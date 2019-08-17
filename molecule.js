@@ -20,6 +20,7 @@ class Molecule {
       this.mass = mass_slider.value();
       mass_text.html("Mass: " + mass_slider.value());
       this.radius = this.mass / 5;
+      this.velocity = createVector(sqrt(this.temperature / this.mass) * randomGaussian(0, 1), sqrt(this.temperature / this.mass) * randomGaussian(0, 1));
     }
 
     //If the temperature slider is changed change the tempareture & velocity of the molecule according to the Maxwell-Boltzmann distribution
