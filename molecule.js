@@ -15,7 +15,7 @@ class Molecule {
     //Update the position of the molecule
     this.position.add(this.velocity);
 
-    //If the mass slider is changed change the mass of the molecule
+    //If the mass slider is changed change the mass & velocity of the molecule according to the Maxwell-Boltzmann distribution
     if (this.mass != mass_slider.value()) {
       this.mass = mass_slider.value();
       mass_text.html("Mass: " + mass_slider.value());
@@ -23,7 +23,7 @@ class Molecule {
       this.velocity = createVector(sqrt(this.temperature / this.mass) * randomGaussian(0, 1), sqrt(this.temperature / this.mass) * randomGaussian(0, 1));
     }
 
-    //If the temperature slider is changed change the tempareture & velocity of the molecule according to the Maxwell-Boltzmann distribution
+    //If the temperature slider is changed change the temperature & velocity of the molecule according to the Maxwell-Boltzmann distribution
     if (this.temperature != temp_slider.value()) {
       this.temperature = temp_slider.value();
       temp_text.html("Temperature: " + temp_slider.value());
