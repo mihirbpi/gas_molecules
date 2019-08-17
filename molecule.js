@@ -12,9 +12,6 @@ class Molecule {
   update() {
     /* Update the molecule */
 
-    //Update the position of the molecule
-    this.position.add(this.velocity);
-
     //If the mass slider is changed change the mass & velocity of the molecule according to the Maxwell-Boltzmann distribution
     if (this.mass != mass_slider.value()) {
       this.mass = mass_slider.value();
@@ -45,6 +42,10 @@ class Molecule {
         other_molecule.velocity = v1i;
       }
     }
+
+    //Update the position of the molecule
+    this.position.add(this.velocity);
+
   }
 
   show() {
