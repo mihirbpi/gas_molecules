@@ -13,7 +13,7 @@ function setup() {
   temp_text = createElement('p', "Temperature: " + temp_slider.value());
 
   //Create canvas
-  createCanvas(window.outerWidth, window.outerHeight);
+  createCanvas(window.outerWidth-17.5, window.outerHeight-335);
 
   //Create 200 molecules
   for (var i = 0; i < 200; i++) {
