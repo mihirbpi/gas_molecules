@@ -28,7 +28,7 @@ class Molecule {
     }
 
     //If the molecule hits the edge of the canvas make it bounce backwards with the same velocity
-    if (this.position.x <= 0 || this.position.y <= 0 || this.position.x >= window.width || this.position.y >= window.height) {
+    if (this.position.x <= 0 || this.position.y <= 0 || this.position.x >= (width) || this.position.y >= (height)) {
       this.velocity = p5.Vector.mult(this.velocity, -1);
     }
 
@@ -36,15 +36,20 @@ class Molecule {
     for (let other_molecule of molecules) {
       var d = dist(this.position.x, this.position.y, other_molecule.position.x, other_molecule.position.y);
       if (d <= this.radius) {
-        var v1i = this.velocity;
-        var v2i = other_molecule.velocity;
-        this.velocity = v2i;
-        other_molecule.velocity = v1i;
+        if (this.position.x <= 0 || this.position.y <= 0 || this.position.x >= (width) || this.position.y >= (height)) {
+          this.velocity = p5.Vector.mult(this.velocity, -1);
+          other_molecule.velocity = p5.Vector.mult(other_molecule.velocity, -1);
+        } else {
+          var v1i = this.velocity;
+          var v2i = other_molecule.velocity;
+          this.velocity = v2i;
+          other_molecule.velocity = v1i;
+        }
       }
     }
 
     //Update the position of the molecule
-    this.position.add(this.velocity);
+    this.position.add(p5.Vector.mult(this.velocity,2));
 
   }
 
