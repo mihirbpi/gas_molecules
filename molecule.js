@@ -3,10 +3,12 @@ class Molecule {
   constructor(mass, temperature) {
     /* Constructor to create a new molecule */
     this.mass = mass;
+    this.radius = this.mass / 5;
     this.temperature = temperature;
     this.position = createVector(random(0, width), random(0, height));
-    this.radius = this.mass / 5;
-    this.velocity = createVector(sqrt(this.temperature / this.mass) * randomGaussian(0, 1), sqrt(this.temperature / this.mass) * randomGaussian(0, 1));
+    this.energy = randomExponential(1/this.temperature)
+    this.velocity = p5.Vector.random2D();
+    this.velocity.setMag(sqrt(2*this.energy/this.mass));
   }
 
   update() {
@@ -17,14 +19,18 @@ class Molecule {
       this.mass = mass_slider.value();
       mass_text.html("Mass: " + mass_slider.value());
       this.radius = this.mass / 5;
-      this.velocity = createVector(sqrt(this.temperature / this.mass) * randomGaussian(0, 1), sqrt(this.temperature / this.mass) * randomGaussian(0, 1));
+      this.energy = randomExponential(1/this.temperature)
+      this.velocity = p5.Vector.random2D();
+      this.velocity.setMag(sqrt(2*this.energy/this.mass));
     }
 
     //If the temperature slider is changed change the temperature & velocity of the molecule according to the Maxwell-Boltzmann distribution
     if (this.temperature != temp_slider.value()) {
       this.temperature = temp_slider.value();
       temp_text.html("Temperature: " + temp_slider.value());
-      this.velocity = createVector(sqrt(this.temperature / this.mass) * randomGaussian(0, 1), sqrt(this.temperature / this.mass) * randomGaussian(0, 1));
+      this.energy = randomExponential(1/this.temperature)
+      this.velocity = p5.Vector.random2D();
+      this.velocity.setMag(sqrt(2*this.energy/this.mass));
     }
 
     //If the molecule hits the edge of the canvas make it bounce backwards with the same velocity
